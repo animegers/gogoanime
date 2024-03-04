@@ -11,15 +11,15 @@ import { USER_AGENT, renameKey } from './utils.js';
 
 const BASE_URL = 'https://gogoanime3.co/';
 const BASE_URL2 = 'https://gogoanime3.co/';
-const ajax_url = 'https://ajax.gogo-load.com/';
-const anime_info_url = 'https://gogoanime3.co/category/';
+const ajax_url = '---';
+const anime_info_url = 'https://anitaku.to/category/';
 const anime_movies_path = '/anime-movies.html';
 const popular_path = '/popular.html';
 const new_season_path = '/new-season.html';
 const search_path = '/search.html';
-const popular_ongoing_url = `${ajax_url}ajax/page-recent-release-ongoing.html`;
-const recent_release_url = `${ajax_url}ajax/page-recent-release.html`;
-const list_episodes_url = `${ajax_url}ajax/load-list-episode`;
+const popular_ongoing_url = `https://anitaku.to/page-recent-release-ongoing.html`;
+const recent_release_url = `https://anitaku.to/page-recent-release.html`;
+const list_episodes_url = `https://anitaku.to/load-list-episode`;
 const seasons_url = 'https://gogoanime3.co/sub-category/';
 
 const Referer = 'https://embtaku.pro/';
@@ -409,7 +409,7 @@ export const scrapeAnimeDetails = async ({ id }) => {
   let genres = [];
   let epList = [];
 
-  const animePageTest = await axios.get(`https://gogoanime3.co/category/${id}`);
+  const animePageTest = await axios.get(`https://anitaku.to/category/${id}`);
 
   const $ = cheerio.load(animePageTest.data);
 
