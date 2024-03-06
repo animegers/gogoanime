@@ -9,18 +9,18 @@ import { extractStreamSB } from './helpers/extractors/streamsb.js';
 import { extractFembed } from './helpers/extractors/fembed.js';
 import { USER_AGENT, renameKey } from './utils.js';
 
-const BASE_URL = 'https://gogoanime3.co/';
+const BASE_URL = 'https://anitaku.to/';
 const BASE_URL2 = 'https://gogoanime3.co/';
-const ajax_url = '---';
+const ajax_url = 'https://anitaku.to/';
 const anime_info_url = 'https://anitaku.to/category/';
 const anime_movies_path = '/anime-movies.html';
 const popular_path = '/popular.html';
 const new_season_path = '/new-season.html';
 const search_path = '/search.html';
-const popular_ongoing_url = `https://anitaku.to/page-recent-release-ongoing.html`;
-const recent_release_url = `https://anitaku.to/page-recent-release.html`;
-const list_episodes_url = `https://anitaku.to/load-list-episode`;
-const seasons_url = 'https://gogoanime3.co/sub-category/';
+const popular_ongoing_url = `${ajax_url}page-recent-release-ongoing.html`;
+const recent_release_url = `${ajax_url}page-recent-release.html`;
+const list_episodes_url = `${ajax_url}load-list-episode`;
+const seasons_url = 'https://anitaku.to/sub-category/';
 
 const Referer = 'https://embtaku.pro/';
 const goload_stream_url = 'https://embtaku.pro/streaming.php';
@@ -86,7 +86,7 @@ const cachedDownloadLinks = {};
 
 export const scrapeFembed = async ({ id }) => {
  try {
-  const epPage = await axios.get(BASE_URL2 + id);
+  const epPage = await axios.get(BASE_URL + id);
   const $ = cheerio.load(epPage.data);
 
   const server = $('.xstreamcdn > a:nth-child(1)').attr('data-video');
@@ -104,11 +104,11 @@ export const scrapeFembed = async ({ id }) => {
 
 export const scrapeStreamSB = async ({ id }) => {
  try {
-  const epPage = await axios.get(BASE_URL2 + id);
+  const epPage = await axios.get(BASE_URL + id);
   const $ = cheerio.load(epPage.data);
 
   const server = $(
-   'div.anime_video_body > div.anime_muti_link > ul > li.streamsb > a'
+   'div.anime_video_body > div.anime_muti_link > ul > li.streamsb > a',
   ).attr('data-video');
   const serverUrl = new URL(server);
 
@@ -133,7 +133,7 @@ export const scrapeM3U8 = async ({ id }) => {
   let epPage, server, $, serverUrl;
 
   if (id) {
-   epPage = await axios.get(BASE_URL2 + id);
+   epPage = await axios.get(BASE_URL + id);
    $ = cheerio.load(epPage.data);
 
    server = $('#load_anime > div > div > iframe').attr('src');
@@ -147,7 +147,7 @@ export const scrapeM3U8 = async ({ id }) => {
 
   const params = await generateEncryptAjaxParameters(
    $$,
-   serverUrl.searchParams.get('id')
+   serverUrl.searchParams.get('id'),
   );
 
   const fetchRes = await axios.get(
@@ -158,7 +158,7 @@ export const scrapeM3U8 = async ({ id }) => {
      'User-Agent': USER_AGENT,
      'X-Requested-With': 'XMLHttpRequest',
     },
-   }
+   },
   );
 
   const res = decryptEncryptAjaxResponse(fetchRes.data);
@@ -181,7 +181,7 @@ export const scrapeM3U8 = async ({ id }) => {
 export const scrapeSearch = async ({ list = [], keyw, page = 1 }) => {
  try {
   const searchPage = await axios.get(
-   `${BASE_URL + search_path}?keyword=${keyw}&page=${page}`
+   `${BASE_URL + search_path}?keyword=${keyw}&page=${page}`,
   );
   const $ = cheerio.load(searchPage.data);
 
@@ -409,14 +409,13 @@ export const scrapeAnimeDetails = async ({ id }) => {
   let genres = [];
   let epList = [];
 
-  const animePageTest = await axios.get(`https://anitaku.to/category/${id}`);
+  const animePageTest = await axios.get(`${BASE_URL}category/${id}`);
 
   const $ = cheerio.load(animePageTest.data);
 
   const animeTitle = $('div.anime_info_body_bg > h1').text();
   const animeImage = $('div.anime_info_body_bg > img').attr('src');
   const type = $('div.anime_info_body_bg > p:nth-child(4) > a').text();
-
 
   const desc = $('div.anime_info_body_bg > p:nth-child(5)')
    .text()
@@ -440,18 +439,18 @@ export const scrapeAnimeDetails = async ({ id }) => {
   const alias = $('#alias_anime').attr('value');
 
   const html = await axios.get(
-   `${list_episodes_url}?ep_start=${ep_start}&ep_end=${ep_end}&id=${movie_id}&default_ep=${0}&alias=${alias}`
+   `${list_episodes_url}?ep_start=${ep_start}&ep_end=${ep_end}&id=${movie_id}&default_ep=${0}&alias=${alias}`,
   );
   const $$ = cheerio.load(html.data);
 
   $$('#episode_related > li').each((i, el) => {
-    let episodeLocale = $(el).find(`div.cate`).text().toLowerCase() ;
+   let episodeLocale = $(el).find(`div.cate`).text().toLowerCase();
    epList.push({
     episodeId: $(el).find('a').attr('href').split('/')[1],
     episodeNum: $(el).find(`div.name`).text().replace('EP ', ''),
     episodeUrl: BASE_URL + $(el).find(`a`).attr('href').trim(),
-    isSubbed:  episodeLocale == "sub",
-    isDubbed:  episodeLocale == "dub",
+    isSubbed: episodeLocale == 'sub',
+    isDubbed: episodeLocale == 'dub',
    });
   });
 
