@@ -12,7 +12,7 @@ import { USER_AGENT, renameKey } from './utils.js';
 const BASE_URL = 'https://anitaku.to/';
 const BASE_URL2 = 'https://gogoanime3.co/';
 const ajax_url = 'https://anitaku.to/';
-const anime_info_url = 'https://anitaku.to/category/';
+const anime_info_url = 'https://gogoanime3.co/category/';
 const anime_movies_path = '/anime-movies.html';
 const popular_path = '/popular.html';
 const new_season_path = '/new-season.html';
