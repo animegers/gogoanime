@@ -9,8 +9,8 @@ import { extractStreamSB } from './helpers/extractors/streamsb.js';
 import { extractFembed } from './helpers/extractors/fembed.js';
 import { USER_AGENT, renameKey } from './utils.js';
 
-const BASE_URL = 'https://gogoanime3.co/';
-const BASE_URL2 = 'https://anitaku.to/';
+const BASE_URL = 'https://gogoanime3.co';
+const BASE_URL2 = 'https://anitaku.so';
 const ajax_url = 'https://ajax.gogocdn.net/';
 const anime_info_url = 'https://gogoanime3.co/category/';
 const anime_movies_path = '/anime-movies.html';
@@ -20,7 +20,7 @@ const search_path = '/search.html';
 const popular_ongoing_url = `${ajax_url}ajax/page-recent-release-ongoing.html`;
 const recent_release_url = `${ajax_url}ajax/page-recent-release.html`;
 const list_episodes_url = `${ajax_url}ajax/load-list-episode`;
-const seasons_url = 'https://anitaku.to/sub-category/';
+const seasons_url = 'https://gogoanime3.co/sub-category/';
 
 const Referer = 'https://embtaku.pro/';
 const goload_stream_url = 'https://embtaku.pro/streaming.php';
@@ -376,7 +376,7 @@ export const scrapeGenre = async ({ list = [], genre, page = 1 }) => {
     genre = genre.trim().replace(/ /g, '-').toLowerCase();
 
     if (Genres.indexOf(genre) > -1) {
-      const genrePage = await axios.get(`${BASE_URL}genre/${genre}?page=${page}`);
+      const genrePage = await axios.get(`${BASE_URL}/genre/${genre}?page=${page}`);
       const $ = cheerio.load(genrePage.data);
 
       $('div.last_episodes > ul > li').each((i, elem) => {
@@ -417,7 +417,7 @@ export const scrapeAnimeDetails = async ({ id }) => {
     let genres = [];
     let epList = [];
 
-    const animePageTest = await axios.get(`${BASE_URL}category/${id}`);
+    const animePageTest = await axios.get(`${BASE_URL}/category/${id}`);
 
     const $ = cheerio.load(animePageTest.data);
 
