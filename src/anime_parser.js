@@ -10,7 +10,7 @@ import { extractFembed } from './helpers/extractors/fembed.js';
 import { USER_AGENT, renameKey } from './utils.js';
 
 const BASE_URL = 'https://gogoanime3.co/';
-const BASE_URL2 = 'https://anitaku.so/';
+const BASE_URL2 = 'https://anitaku.pe/';
 const ajax_url = 'https://ajax.gogocdn.net/';
 const anime_info_url = 'https://gogoanime3.co/category/';
 const anime_movies_path = '/anime-movies.html';
@@ -23,8 +23,8 @@ const list_episodes_url = `${ajax_url}ajax/load-list-episode`;
 const seasons_url = 'https://anitaku.so/sub-category/';
 
 const Referer = 'https://embtaku.pro/';
-const goload_stream_url = 'https://embtaku.pro/streaming.php';
-export const DownloadReferer = 'https://embtaku.pro/';
+const goload_stream_url = 'https://s3taku.com/streaming.php';
+export const DownloadReferer = 'https://s3taku.com/';
 
 const disqus_iframe = (episodeId) =>
   `https://disqus.com/embed/comments/?base=default&f=gogoanimetv&t_u=https%3A%2F%2Fgogoanime.vc%2F${episodeId}&s_o=default#version=cfefa856cbcd7efb87102e7242c9a829`;
