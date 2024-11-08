@@ -9,10 +9,10 @@ import { extractStreamSB } from './helpers/extractors/streamsb.js';
 import { extractFembed } from './helpers/extractors/fembed.js';
 import { USER_AGENT, renameKey } from './utils.js';
 
-const BASE_URL = 'https://gogoanime3.co/';
-const BASE_URL2 = 'https://anitaku.pe/';
+const BASE_URL = 'https://gogoanime3.cc/';
+const BASE_URL2 = 'https://anitaku.bz/';
 const ajax_url = 'https://ajax.gogocdn.net/';
-const anime_info_url = 'https://gogoanime3.co/category/';
+const anime_info_url = 'https://gogoanime3.cc/category/';
 const anime_movies_path = '/anime-movies.html';
 const popular_path = '/popular.html';
 const new_season_path = '/new-season.html';
@@ -20,9 +20,9 @@ const search_path = '/search.html';
 const popular_ongoing_url = `${ajax_url}ajax/page-recent-release-ongoing.html`;
 const recent_release_url = `${ajax_url}ajax/page-recent-release.html`;
 const list_episodes_url = `${ajax_url}ajax/load-list-episode`;
-const seasons_url = 'https://anitaku.so/sub-category/';
+const seasons_url = 'https://anitaku.bz/sub-category/';
 
-const Referer = 'https://embtaku.pro/';
+const Referer = 'https://s3taku.com/';
 const goload_stream_url = 'https://s3taku.com/streaming.php';
 export const DownloadReferer = 'https://s3taku.com/';
 
