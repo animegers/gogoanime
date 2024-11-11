@@ -22,9 +22,9 @@ const recent_release_url = `${ajax_url}ajax/page-recent-release.html`;
 const list_episodes_url = `${ajax_url}ajax/load-list-episode`;
 const seasons_url = 'https://anitaku.bz/sub-category/';
 
-const Referer = 'https://s3taku.com/';
-const goload_stream_url = 'https://s3taku.com/streaming.php';
-export const DownloadReferer = 'https://s3taku.com/';
+const Referer = 'https://s3embtaku.pro/';
+const goload_stream_url = 'https://s3embtaku.pro/streaming.php';
+export const DownloadReferer = 'https://s3embtaku.pro/';
 
 const disqus_iframe = (episodeId) =>
   `https://disqus.com/embed/comments/?base=default&f=gogoanimetv&t_u=https%3A%2F%2Fgogoanime.vc%2F${episodeId}&s_o=default#version=cfefa856cbcd7efb87102e7242c9a829`;
